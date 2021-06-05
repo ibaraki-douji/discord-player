@@ -1,0 +1,31 @@
+{
+  "name": "@ibaraki-douji/discord-player",
+  "version": "1.0.5",
+  "description": "An Audio For Discord Bot",
+  "main": "./lib/main.js",
+  "types": "./lib/main.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "discord",
+    "music",
+    "player",
+    "bot"
+  ],
+  "author": "Ibaraki-Douji",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "ffmpeg-static": "^4.3.0",
+    "node-html-parser": "^3.3.4",
+    "querystring": "^0.2.1"
+  },
+  "devDependencies": {
+    "@discordjs/opus": "^0.5.0",
+    "@types/node": "^15.6.2",
+    "discord.js": "^12.5.3",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
+  }
+}
