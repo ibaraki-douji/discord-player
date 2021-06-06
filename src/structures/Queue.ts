@@ -1,4 +1,6 @@
-import { StreamDispatcher, VoiceConnection } from "discord.js";
+import axios from "axios";
+import { StreamDispatcher, VoiceBroadcast, VoiceConnection } from "discord.js";
+import { Readable } from "stream";
 import Player from "../Player";
 import Track from "./Track";
 
@@ -45,21 +47,20 @@ export class Queue {
         this.dispatcher.end();
     }
 
-    private _startTrack() {
+    private async _startTrack() {
         if (this.t.length == 0) {
             if (this.player.options.leaveOnEnd) this.voiceConnection.channel.leave();
             return;
         }
         const track = this.t[0];
         if (this.voiceConnection == null) return;
-
-        this.dispatcher = this.voiceConnection.play(this.t[0].data.audio);
+        this.dispatcher = this.voiceConnection.play(track.data.audio.streamURL);
         this.dispatcher.on("start", () => {
-            if (this.player.events['trackStart']) this.player.events['trackStart'](this.t[0].data, this);
+            if (this.player.events['trackStart']) this.player.events['trackStart'](track.data, this);
         });
 
         this.dispatcher.on("finish", () => {
-            if (this.player.events['trackEnd']) this.player.events['trackEnd'](this.t[0].data, this);
+            if (this.player.events['trackEnd']) this.player.events['trackEnd'](track.data, this);
             this.t.shift();
             this._startTrack();
         });

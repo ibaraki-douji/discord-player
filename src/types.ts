@@ -25,7 +25,10 @@ export interface DataTrack {
     url: string,
     thumbnail: string,
     duration: string,
-    audio: Readable
+    audio: {
+        length: number,
+        streamURL: string
+    }
 }
 
 export interface PartialTrack {

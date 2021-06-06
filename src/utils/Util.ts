@@ -156,7 +156,10 @@ class YouTube {
             thumbnail: partial.thumbnail,
             url: partial.url,
             description: data.videoDetails.shortDescription,
-            audio: await Util.downloadAudio(new URL(url))
+            audio: {
+              length: +sign.contentLength,
+              streamURL: url
+            }
         };
     }
 

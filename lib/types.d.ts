@@ -1,5 +1,3 @@
-/// <reference types="node" />
-import { Readable } from "stream";
 import Queue from "./structures/Queue";
 export interface Options {
     leaveOnEnd?: boolean;
@@ -21,7 +19,10 @@ export interface DataTrack {
     url: string;
     thumbnail: string;
     duration: string;
-    audio: Readable;
+    audio: {
+        length: number;
+        streamURL: string;
+    };
 }
 export interface PartialTrack {
     title: string;
